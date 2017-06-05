@@ -17,6 +17,15 @@
     $levelStages=getLevelStages($_COOKIE['token'],$_COOKIE['character'],$_GET['levelId']);
     //var_dump($levelStages);
     
+    function cmp ($a, $b)
+    {  
+        $index='Position';
+        if ($a[$index] == $b[$index]) return 0;
+        return ($a[$index] < $b[$index]) ? -1 : 1;
+    } 
+    
+    usort($levelStages,"cmp"); 
+    
     $maxLevelKey=max(array_keys($levelStages));
     
     if(isset($_POST['stageToProgress'])){
