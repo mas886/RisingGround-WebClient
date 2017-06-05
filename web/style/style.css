@@ -1,0 +1,659 @@
+* {
+  box-sizing: border-box;
+}
+
+body.login{
+    background-color: #28263B;
+}
+
+div.background-image {
+    background-image: url('../images/LoginBackground.jpg');
+    background-size: cover;
+    display: block;
+    filter: blur(5px);
+
+    -webkit-filter: blur(7px);
+    -moz-filter: blur(7px);
+    -o-filter: blur(7px);
+    -ms-filter: blur(7px);
+    filter: blur(7px);
+    height: 100%;
+    left: 0;
+    position: fixed;
+    right: 0;
+    z-index: -900;
+}
+/*status bar */
+
+ul.statusBar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li.floatLeft {
+    float: left;
+}
+
+li.floatRight{
+    float:right;
+}
+
+li.currency{
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 4px 4px;
+    text-decoration: none;
+    width:auto;
+    margin-right:10px;
+}
+
+img.statusBarIcon{
+    width:17px;
+    height:17px;
+}
+
+li a, .dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 4px 4px;
+    text-decoration: none;
+    min-width:110px;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+    background-color: lightgrey;
+}
+
+li.dropdown {
+    display: inline-block;
+    position:relative;
+    z-index:2;
+}
+
+.dropdown-content {
+    display: none;
+    position: fixed;
+    background-color: #f9f9f9;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown-scrolled {
+    padding:5px 5px 5px 5px;
+    max-height: 300px;
+    max-width: 250px;
+    min-width: 250px;
+    min-height: 250px;
+    overflow-y: scroll;
+}
+
+div.dropdown-item {
+  margin-top: 10px;
+  text-align: justify;
+}
+
+.dropdown-item-header {
+    margin-bottom: 5px;
+    text-align: left;
+    display:block;
+}
+
+.dropdown-item-delete {
+    margin-left: 3px;
+    padding-bottom: 3px;
+    background-color: red;
+    border:none;
+    float: right;
+    border-radius: 2px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/*Status bar content end*/
+
+div.contentLogin {
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: 3px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    position: fixed;
+    margin-top: 60px;
+    min-width:440px;
+    width:30%;
+    z-index: 0;
+    padding: 0px 10px 10px 10px;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+div.contentCharSelect {
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: 3px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    position: relative;
+    margin-top: 60px;
+    min-width:600px;
+    width:60%;
+    z-index: 0;
+    padding: 0px 10px 10px 10px;
+}
+
+div.contentLevelStages {
+    width:50%;
+    min-width: 500px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.45);
+    position:fixed;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+div.characterListItem{
+    color:#333333;
+    border-radius: 10px;
+    padding-left: 5px;
+    height:100px;
+    background: rgba(255, 255, 255, 0.35);
+}
+
+
+div.characterListItem:hover{
+    background: rgba(0, 0, 0, 0.25);
+}
+
+a.characterListItem{
+    text-decoration: none !important;
+}
+
+
+img.characterListAvatar{
+    position:relative;
+    float:right;
+    height:80px;
+    width:80px;
+    margin-top:10px;
+    margin-right:10px;
+}
+
+div.centerButton{
+    margin-left:auto;
+    margin-right:auto;
+    width:140px;
+}
+
+div.floatRight{
+    position:relative;
+    margin-top:10px;
+    margin-right:10px;
+    float:right;
+    z-index:1;
+}
+
+div.yesButtonFloatLeft{
+    position:absolute;
+    margin-top:10px;
+    margin-left:10px;
+    float:left;
+    z-index:1;
+}
+
+ /* The Modal (background) */
+div.contentCharSelect .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+div.contentCharSelect .modal-content {
+    border: 1px solid #888;
+    background-color: rgba(0,0,0,0.7);
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 5px;
+    border: 1px solid #888;
+    min-width:300px;
+    width: 30%; /* Could be more or less, depending on screen size */
+}
+
+div.contentCharSelect .modal-YesNo-content {
+    border: 1px solid #888;
+    color:lightgrey;
+    background-color: rgba(0,0,0,0.7);
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 5px;
+    border: 1px solid #888;
+    min-width:300px;
+    width: 20%; /* Could be more or less, depending on screen size */
+    border-radius: 5px;
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+h3.h3Center{
+    text-align: center;
+    position:relative;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+h3.h3CenterLightgrey{
+    color:lightgrey;
+    text-align: center;
+    position:relative;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+h3.h3CenterLightgreyListItem{
+    color:lightgrey;
+    text-align: center;
+    position:relative;
+    margin-left:auto;
+    margin-right:auto;
+    padding-top: 10px;
+    font-size: 18px;
+}
+
+h4.h4Center{
+    text-align: center;
+    position:relative;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.formLabel{
+    display:block;
+    font-size: 15px;
+}
+
+.formInput{
+    display:block;
+    width:99%;
+}
+
+h1.LoginCenter{
+    text-align: center;
+    position:relative;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+div.topLeftInGameMenu{
+    position:absolute;
+    z-index: 0;
+    float:left;
+}
+
+div.topRightInGameMenu{
+    position:absolute;
+    z-index: 0;
+    top:29px;
+    right:0;
+}
+
+div.topMiddleInGameMenu{
+    margin-left:40%;
+}
+
+p.inGameMenuText{
+    color:lightgrey;
+    font-size:25px;
+    text-align: center;
+}
+
+p.inGameMenuLabels{
+    color:lightgrey;
+    font-size:16px;
+    text-align: center;
+}
+
+div.botLeftInGameMenu{
+    position:absolute;
+    left:0;
+    bottom:0;
+    z-index: 0;
+}
+
+div.botRightInGameMenu{
+    position:absolute;
+    right:0;
+    bottom:0;
+    z-index: 0;
+}
+
+div.ingGameMenu{
+    padding: 10px 10px 10px 10px;
+    width:20%;
+    min-width: 200px;
+    background-color: rgba(107, 45, 6, 0.45);
+    border-radius: 5px;
+    display: block;
+}
+
+.inGameMenuButton{
+    width:99%;
+    margin-bottom:10px;
+}
+
+div.spacing{
+    margin-bottom:10px;
+    margin-top:10px;
+}
+
+/* The Modal (background) */
+div.inGameModals .modal {
+   display: none; /* Hidden by default */
+   position: fixed; /* Stay in place */
+   z-index: 1; /* Sit on top */
+   left: 0;
+   top: 0;
+   width: 100%; /* Full width */
+   height: 100%; /* Full height */
+   overflow: auto; /* Enable scroll if needed */
+   background-color: rgb(0,0,0); /* Fallback color */
+   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+div.inGameModals .close {
+    color: yellow;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+div.inGameModals .close:hover,
+div.inGameModals .close:focus {
+    color: yellow;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Modal Content/Box */
+div.inGameModals .modal-content {
+   background-color: rgba(0,0,0,0.5);
+   margin: 10% auto; /* 15% from the top and centered */
+   padding: 5px;
+   border: 1px solid #888;
+   min-width:300px;
+   width: 45%;
+}
+
+div.listItems{
+  height: 350px;
+  overflow-y: scroll;
+}
+
+div.dungeonListItem{
+  width:98%;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+  padding:0px 10px 40px 10px;
+  background-color: rgba(255,255,255,0.2);;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  border-radius: 5px;
+  color:lightgrey;
+}
+
+div.dungeonListItem:hover{
+  background-color: rgba(255,255,255,0.6);
+}
+
+p.itemDescriptionJustified{
+  text-align: justify;
+}
+
+p.itemDescriptionCenter{
+  text-align: center;
+  display: block;
+}
+
+p.itemProperty{
+  position:relative;
+  float:left;
+  padding-top: 10px;
+}
+
+input.itemButton{
+  position:relative;
+  float:right;
+  color:black;
+}
+
+input.itemButton:hover{
+  color:orange;
+}
+
+
+div.itemListScrolled{
+  height: 90%;
+  overflow-y: scroll;
+}
+
+div.itemListHeader{
+  padding-top: 2%;
+  height: 10%;
+}
+
+div.levelStageListItem{
+  width:98%;
+  height:auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: rgba(255,255,255,0.5);
+  border-radius: 5px;
+  padding:5px 5px 5px 5px;
+}
+
+p.h1LevelStages{
+    color:lightgrey;
+    text-align: center;
+    position:relative;
+    margin-left:auto;
+    margin-right:auto;
+    font-size: 30px;
+}
+
+p.headerTextStageType{
+  font-size: 25px;
+}
+
+p.inGameTextBlock{
+  display:block;
+}
+
+input.inGameButton{
+  position:relative;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+/* The Modal (background) */
+div.contentLevelStages .modal {
+   display: none; /* Hidden by default */
+   position: fixed; /* Stay in place */
+   z-index: 1; /* Sit on top */
+   left: 0;
+   top: 0;
+   width: 100%; /* Full width */
+   height: 100%; /* Full height */
+   overflow: auto; /* Enable scroll if needed */
+   background-color: rgb(0,0,0); /* Fallback color */
+   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+div.contentLevelStages .modal-content {
+   background-color: #fefefe;
+   margin: 15% auto; /* 15% from the top and centered */
+   padding: 5px;
+   border: 1px solid #888;
+   min-width:300px;
+   width: 40%; /* Could be more or less, depending on screen size */
+}
+
+div.manageBuilds{
+  height:450px;
+}
+
+div.modalSplit2 {
+  position:relative;
+  height:100%;
+  width: 48%;
+  padding:1% 1% 1% 1%;
+  margin-left: 1%;
+  float: left;
+}
+
+.inGameMenuButtonFixedBottom{
+    position: absolute;
+    width:96%;
+    bottom: 10;
+}
+
+.buildListItem{
+  width:98%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 40px;
+  padding:1px 3px 1px 3px;
+  background-color: rgba(255,255,255,0.2);;
+  margin-bottom: 2px;
+  margin-top: 2px;
+  border-radius: 5px;
+  color:lightgrey;
+	border:			none;
+}
+
+.buildListItem:hover{
+  background-color: rgba(255,255,255,0.6);
+}
+
+.buildListTitle{
+  text-align: center;
+}
+
+div.monstersOnBuild{
+  height: 140px;
+  overflow-y: scroll;
+}
+
+div.squareItemList{
+  margin-left: auto;
+  margin-right: auto;;
+  margin-bottom: 10px;
+  width: 98%;
+  height: 400px;
+  overflow-y: scroll;
+  position:relative;
+}
+
+div.squareItemListItem{
+  margin: 5px 5px 5px 5px;
+  padding: 1px 1px 1px 1px;
+  height: 200px;
+  width: 120px;
+  background-color: rgba(255,255,255,0.2);;
+  float:left;
+  position: relative;
+  border-radius: 5px;
+}
+
+div.squareItemListItemSmall{
+  margin: 5px 5px 5px 5px;
+  padding: 1px 1px 1px 1px;
+  height: 150px;
+  width: 120px;
+  background-color: rgba(255,255,255,0.2);;
+  float:left;
+  position: relative;
+  border-radius: 5px;
+}
+
+div.squareItemListItemSmall:hover{
+  background-color: rgba(255,255,255,0.6);
+}
+
+div.squareItemListItem:hover{
+  background-color: rgba(255,255,255,0.6);
+}
+
+img.squareItemListImage{
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  height: 80px;
+  width: 80px;
+}
+
+.buttonCenter{
+    margin-left:30%;
+    margin-right:auto;
+}
+
+.scrolled{    
+    overflow-y: scroll;
+}
+
+span.popAuver{
+    background-color: #efefef;
+    border: 5px solid #DFDFDF;
+    color: #474645;
+    font-size: 16px;
+    height: auto;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+    left:-10px;
+    display:none;
+    width: 159px;
+    z-index: 3;
+
+}
+
+div.popAuver:hover span{
+    display:block;
+}
